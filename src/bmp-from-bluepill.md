@@ -81,11 +81,13 @@ $ make PROBE_HOST=swlink
 ![Building](./assets/blackmagic-make.png)
 
 This will produce two binaries we are interested in: `src/blackmagic_dfu.bin`
-and `src/blackmagic.bin`. The first is a bootloader, which will be flashed with
-the USB-to-UART adapter. And the second is the actual firmware, which will be
-loaded through USB with help of the bootloader.
+and `src/blackmagic.bin`. The first .bin file is a bootloader, which will be flashed with
+the USB-to-UART adapter. And the second is the actual BMP firmware. The latter which will be
+uploaded in a second step through USB on the BluePill with help of the bootloader.
 
 ## Flashing Bootloader
+
+First we are going to flash (upload) the bootloader to the Bluepill:
 
 1. Connect the USB-to-UART adapter with the Blue Pill according to this table:
 
@@ -136,8 +138,10 @@ loaded through USB with help of the bootloader.
 
 ## Flashing Firmware
 
-Now you can disconnect the USB-to-UART adapter from the Blue Pill and your
-PC. The firmware will be flashed through USB port:
+Now you can disconnect the USB-to-UART connect wires from the Blue Pill. Unplug also the USB-to-UART adaper from your
+PC. 
+
+The actual BMP firmware will be flashed through USB port of the BluePill via:
 
 ```shell
 $ dfu-util -d 1d50:6018,:6017 -s 0x08002000:leave -D src/blackmagic.bin
