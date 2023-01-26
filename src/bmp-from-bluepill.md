@@ -1,7 +1,7 @@
 # Black Magic Probe from a Blue Pill
 
 This chapter describes the process of making a Black Magic Probe from a Blue
-Pill board. The steps were tested on Ubuntu 18.04.3 LTS and Arch Linux 5.3.7.
+Pill board. The steps were tested on Ubuntu 18.04.3 LTS, 20.04.1 LTS and Arch Linux 5.3.7.
 
 ## Preparation
 
@@ -52,10 +52,10 @@ $ git clone https://github.com/jsnyder/stm32loader
 $ pip install pyserial
 ```
 
-Get the BMP firmware:
+Get the BMP sourceode of the firmware:
 
 ```shell
-$ git clone https://github.com/blacksphere/blackmagic
+$ https://github.com/blackmagic-debug/blackmagic.git
 $ cd blackmagic
 $ git submodule update --init --recursive
 ```
@@ -66,7 +66,7 @@ symlink the GDB endpoint to `/dev/ttyBmpGdb` and the UART to
 permissions.
 
 ```shell
-$ sudo cp driver/99-blackmagic.rules /etc/udev/rules.d/
+$ sudo cp driver/99-blackmagic-plugdev.rules driver/99-blackmagic-uucp.rules driver/99-stlink-plugdev.rules /etc/udev/rules.d/
 $ sudo udevadm control --reload-rules
 ```
 
